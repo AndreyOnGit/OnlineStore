@@ -10,7 +10,10 @@ import ru.geekbrains.market.exceptions_handling.ResourceNotFoundException;
 import ru.geekbrains.market.models.Product;
 import ru.geekbrains.market.repositories.ProductRepository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -32,4 +35,17 @@ public class ProductService {
         return productRepository.findAll(spec, PageRequest.of(page - 1, pageSize)).map(ProductDto::new);
     }
 
+ 
+    public Function<Product, ru.geekbrains.market.ws.products.Product> functionEntityToSoap = pr -> {
+        ru.geekbrains.market.ws.products.Product p = new ru.geekbrains.market.ws.products.Product();
+        p.setId(pr.getId());
+        p.setTitle(pr.getTitle());
+        p.setPrice(pr.getPrice());
+        return p;
+    };
+
+    public List<ru.geekbrains.market.ws.products.Product> getAllProducts() {
+        return productRepository.findAll().stream().map(functionEntityToSoap).collect(Collectors.toList());
+    }
 }
+
