@@ -30,7 +30,7 @@ public class ProductController {
         productService.deleteById(id);
     }
 
-//    {"name":"smth","price":100}
+    //    {"name":"smth","price":100}
     @PostMapping
     public Product save(@RequestBody Product product) {
         return productService.save(product);
