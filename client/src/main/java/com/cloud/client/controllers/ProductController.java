@@ -1,7 +1,6 @@
 package com.cloud.client.controllers;
 
 import com.cloud.client.models.Product;
-import com.cloud.client.repositories.ProductRepository;
 import com.cloud.client.services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -36,4 +35,6 @@ public class ProductController {
     public Product save(@RequestBody Product product) {
         return productService.save(product);
     }
+
+
 }
