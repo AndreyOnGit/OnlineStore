@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Lesson 4. Spring Boot</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+
+    <h1>LIST OF PRODUCTS</h1>
+    <table th:if="${products.size() > 0}" class="table">
+        <thead>
+        <tr class="text-center">
+            <td>Id</td>
+            <td>Name</td>
+            <td>Price</td>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr class="text-center" th:each="p : ${products}">
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.name}"></td>
+            <td th:text="${p.price + ' ₽'}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <span th:unless="${products.size() > 0}">No products. </span>
+    <span th:text="'Number of products: ' + ${products.size()}"/>
+
+
+</div>
+</body>
+</html>
