@@ -2,7 +2,7 @@ create table products (id bigserial primary key, title varchar(255), price int);
 insert into products (title, price) values
 ('pen', 2),
 ('pencil', 1),
-('noot', 2),
+('note', 2),
 ('book', 10),
 ('eraser', 1),
 ('pencil case', 5),
